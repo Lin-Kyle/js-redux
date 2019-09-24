@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-redux</title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add">+</button>
+        <span id="num">0</span>
+        <button id="reduce">-</button>
+    </div>
+    <script>
+        const $add = document.getElementById('add');
+        const $num = document.getElementById('num');
+        const $reduce = document.getElementById('reduce');
+
+        let val = 0;
+        $add.onclick = () => $num.innerText = ++val;
+        $reduce.onclick = () => $num.innerText = --val;
+    </script>
+</body>
+
+</html>

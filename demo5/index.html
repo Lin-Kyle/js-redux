@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-redux</title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add">+</button>
+        <span id="num1">0</span>
+        <button id="reduce">-</button>
+        <button id="multiply">×</button>
+        <span id="num2">1</span>
+        <button id="divide">÷</button>
+    </div>
+    <script src="./createStore.js"></script>
+    <script src="./combineReducers .js"></script>
+    <script src="./actions.js"></script>
+    <script src="./reducers.js"></script>
+    <script src="./store.js"></script>
+    <script>
+        // 选择器
+        const $add = document.getElementById('add');
+        const $reduce = document.getElementById('reduce');
+        const $multiply = document.getElementById('multiply');
+        const $divide = document.getElementById('divide');
+        const $num1 = document.getElementById('num1');
+        const $num2 = document.getElementById('num2');
+        // 自动监听渲染数据
+        store.subscribe(() => {
+            $num1.innerText = store.getState().arNum
+            $num2.innerText = store.getState().mdNum
+        })
+        $add.onclick = () => store.dispatch(add())
+        $reduce.onclick = () => store.dispatch(reduce())
+        $multiply.onclick = () => store.dispatch(multiply())
+        $divide.onclick = () => store.dispatch(divide())
+    </script>
+</body>
+
+</html>

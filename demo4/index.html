@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-redux</title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add">+</button>
+        <span id="num">0</span>
+        <button id="reduce">-</button>
+    </div>
+    <script src="./createStore.js"></script>
+    <script src="./actions.js"></script>
+    <script src="./reducers.js"></script>
+    <script src="./store.js"></script>
+    <script>
+        // 选择器
+        const $add = document.getElementById('add');
+        const $num = document.getElementById('num');
+        const $reduce = document.getElementById('reduce');
+        // 自动监听渲染数据
+        store.subscribe(() => {
+            $num.innerText = store.getState().count
+        })
+        $add.onclick = () => {
+            store.dispatch(add())
+        }
+        $reduce.onclick = () => {
+            store.dispatch(reduce())
+        }
+    </script>
+</body>
+
+</html>

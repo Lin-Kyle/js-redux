@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-redux</title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add">+</button>
+        <span id="num">0</span>
+        <button id="reduce">-</button>
+    </div>
+    <script src="./redux.js"></script>
+    <script>
+        // 选择器
+        const $add = document.getElementById('add');
+        const $num = document.getElementById('num');
+        const $reduce = document.getElementById('reduce');
+        // 初始数据
+        let initStore = {
+            count: 0
+        }
+        // 纯函数修改
+        function reducer(state, action) {
+            switch (action.type) {
+                case 'ADD':
+                    return {
+                        ...state,
+                        count: state.count + 1
+                    };
+                case 'REDUCE':
+                    return {
+                        ...state,
+                        count: state.count - 1
+                    };
+            }
+        }
+        // 实例化store
+        let store = createStore(initStore, reducer);
+        // 自动监听渲染数据
+        store.subscribe(() => {
+            $num.innerText = store.getState().count
+        })
+        $add.onclick = () => {
+            store.dispatch({
+                type: 'ADD'
+            })
+        }
+        $reduce.onclick = () => {
+            store.dispatch({
+                type: 'REDUCE'
+            })
+        }
+    </script>
+</body>
+
+</html>
