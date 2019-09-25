@@ -1,4 +1,18 @@
-function createStore (initStore = {}, reducer) {
+function createStore (reducer, initStore = {}, enhancer) {
+  // 处理一下参数问题
+  if (typeof initStore === 'function' && typeof enhancer === 'undefined') {
+    enhancer = initStore
+    initStore = undefined
+  }
+
+  // 劫持enhancer
+  if (typeof enhancer !== 'undefined') {
+    if (typeof enhancer !== 'function') {
+      throw new Error('Expected the enhancer to be a function.')
+    }
+    // 返回包装后的store
+    return enhancer(createStore)(reducer, initStore)
+  }
   // 唯一数据源
   let state = initStore
   // 监听队列
